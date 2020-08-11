@@ -17,29 +17,17 @@ import TokenScreen from './screens/TokenScreen'
 
 export default function App() {
   const resources = useCachedResources()
-  const [token, setToken] = useState('');
   const [loadStages, setLoadStages] = useState({fonts: false, resources: false})
   let [fontsLoaded] = useFonts({
     RobotoMono_400Regular
   });
   if(fontsLoaded && !loadStages.fonts) setLoadStages({...loadStages, fonts: true})
   if(resources && !loadStages.resources) setLoadStages({...loadStages, resources})
-  useEffect(() => {
-    checkToken()
-  }, []);
-  const checkToken = async () => {
-    const token = await AsyncStorage.getItem('token')
-    if(token) setToken(token)
-  }
   if (Object.values(loadStages).findIndex(v => v === false) !== -1) {
     return (
       <AppLoading />
     )
   }
-  if(!token) return (
-    <TokenScreen/>
-  )
-
   return (
     <SafeAreaProvider>
       <Navigation colorScheme={"dark"} />
