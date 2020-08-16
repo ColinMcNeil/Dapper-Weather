@@ -17,6 +17,7 @@ import ChartHourlyTemperature from "../components/ChartHourlyTemperature";
 import Summary from "../components/Summary";
 import Refresh from "../components/Refresh";
 import { useEffect } from "react";
+import WeeklyForecast from "../components/WeeklyForecast";
 
 export default function TabOneScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -24,11 +25,11 @@ export default function TabOneScreen({ navigation }) {
   const [error, setError] = useState("");
   const [myLocation, setMyLocation] = useState("");
   useEffect(() => {
-    AsyncStorage.getItem("token").then((token) => {
-      if (!token) navigation.navigate("Token");
-    });
     const unsubscribe = navigation.addListener("focus", () => {
-      onRefresh();
+      AsyncStorage.getItem("token").then((token) => {
+        if (!token) navigation.navigate("Token");
+        else onRefresh();
+      });
     });
     return unsubscribe;
   }, [navigation]);
@@ -79,6 +80,7 @@ export default function TabOneScreen({ navigation }) {
         <View style={styles.View}>
           <Text style={styles.title}>Summary for {myLocation}</Text>
           <Summary data={data} />
+          <WeeklyForecast data={data} />
           <Text style={styles.title}>Minutely Rain</Text>
           {data.minutely.find((d) => d.precipitation != 0) ? (
             <ChartMinutely data={data.minutely} />
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    color: "white",
+    color: "#f4b266",
     marginTop: 20,
     marginBottom: 10,
   },

@@ -60,8 +60,8 @@ export default ({ data }) => {
       }
     }
     return (
-      <View>
-        <Text key={"dot-" + index} style={{ ...styles.dotText, top, left }}>
+      <View key={"dot-" + index}>
+        <Text style={{ ...styles.dotText, top, left }}>
           {dataParse.labels[index]}
         </Text>
       </View>
