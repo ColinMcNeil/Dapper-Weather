@@ -36,12 +36,14 @@ export default ({ data }) => {
       yAxisSuffix="°F"
       verticalLabelRotation={30}
       getDotProps={(val, index) =>
-        index == 0 ? { r: 6, fill: "#00ff00", stroke: "#bbbbff" } : { r: 5 }
+        index == 0
+          ? { r: 6, fill: "#98D9C2", stroke: "#98D9C2" }
+          : { r: 5, stroke: "#98D9C2", strokeWidth: 2 }
       }
       // hidePointsAtIndex={hideAt}
       chartConfig={{
         decimalPlaces: 1,
-        color: (opacity = 1) => `rgba(150, 230, 150, ${opacity})`,
+        color: (opacity = 1) => `#F19A3E`,
       }}
     />
   );

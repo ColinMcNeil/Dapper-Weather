@@ -14,14 +14,6 @@ import { AdMobRewarded } from "expo-ads-admob";
 export default function TokenScreen({ navigation }) {
   const [tempToken, setTempToken] = useState("");
   const [adText, setAdText] = useState("Watch an ad to get a token");
-  useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      AsyncStorage.getItem("token").then((token) => {
-        if (token) navigation.navigate("Root");
-      });
-    });
-    return unsubscribe;
-  }, [navigation]);
   const checkToken = async () => {
     const token = await AsyncStorage.getItem("token");
     if (token) navigation.navigate("Root");
@@ -41,8 +33,8 @@ export default function TokenScreen({ navigation }) {
     });
     await AdMobRewarded.setAdUnitID("ca-app-pub-3310317900579840/8807467347");
     await AdMobRewarded.requestAdAsync();
-    await AdMobRewarded.showAdAsync();
     setAdText("Ad loaded");
+    await AdMobRewarded.showAdAsync();
   };
 
   // const token = await AsyncStorage.getItem('token')

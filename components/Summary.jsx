@@ -1,12 +1,4 @@
 import React from "react";
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
 import { StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
 
@@ -36,8 +28,8 @@ export default ({ data }) => {
       </Text>
       <Text style={styles.text}>Feels like: {data.current.feels_like}F</Text>
       <Text style={styles.text}>
-        Wind: {data.current.wind_speed} MPH w/ {data.current.wind_gust} MPH
-        gusts
+        Wind: {Math.round(data.current.wind_speed)}MPH w/{" "}
+        {data.current.wind_gust || 1}MPH gusts
       </Text>
     </View>
   );
