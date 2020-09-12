@@ -24,9 +24,9 @@ Notifications.setNotificationHandler({
   },
 });
 
-TaskManager.defineTask("BACKGROUND_WEATHER", () => {
-  RunRainReport();
+TaskManager.defineTask("BACKGROUND_WEATHER", async () => {
   ScheduleDailyNotification();
+  return await RunRainReport();
 });
 BackgroundFetch.registerTaskAsync("BACKGROUND_WEATHER", {
   minimumInterval: 1800,

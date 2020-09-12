@@ -2,7 +2,7 @@
   "expo": {
     "name": "Dapper Weather",
     "slug": "dapper-weather",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "myapp",
@@ -24,7 +24,7 @@
     },
     "android": {
       "package": "me.colinmcneil.dapperweather",
-      "versionCode": 2,
+      "versionCode": 3,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-3310317900579840/8807467347"
       },

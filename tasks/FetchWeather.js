@@ -14,6 +14,7 @@ const QueryWeather = async() => {
   return resp.json();
 }
 const RunRainReport = async() => {
+  console.log('Running rain report')
   try {
     const data = await QueryWeather()
     if (!data) return BackgroundFetch.Result.Failed
@@ -46,6 +47,7 @@ const RunRainReport = async() => {
 };
 
 const ScheduleDailyNotification = async(immediate = false) => {
+  console.log('Preparing tomorrows report')
   const data = await QueryWeather()
   const content = {
     title: "Daily Weather Report!",
