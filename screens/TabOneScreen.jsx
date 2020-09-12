@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 
+import * as BackgroundFetch from "expo-background-fetch";
+import * as TaskManager from "expo-task-manager";
+
 import { Text, View } from "../components/Themed";
 
 import ChartMinutely from "../components/ChartMinutely";

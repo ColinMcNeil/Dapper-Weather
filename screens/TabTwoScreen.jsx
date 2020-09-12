@@ -4,13 +4,20 @@ import { StyleSheet, AsyncStorage } from "react-native";
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Button } from "react-native";
 import { Text, View } from "../components/Themed";
+import * as TaskManager from "expo-task-manager";
 
 import * as Updates from "expo-updates";
+
+import { FetchWeather, ScheduleDailyNotification } from "../tasks/FetchWeather";
 
 export default function TabTwoScreen(props) {
   const [token, setToken] = useState("");
   const [updateStatus, setUpdateStatus] = useState("Check for Updates");
+  const [taskRegistered, setTaskRegistered] = useState(false);
   useEffect(() => {
+    TaskManager.isTaskRegisteredAsync("BACKGROUND_WEATHER").then(
+      setTaskRegistered
+    );
     const unsubscribe = props.navigation.addListener(
       "focus",
       () => {
@@ -59,6 +66,21 @@ export default function TabTwoScreen(props) {
       <Button
         title={updateStatus}
         onPress={checkUpdate}
+        style={styles.Button}
+      />
+      <Text style={styles.title}>
+        {taskRegistered
+          ? "Background weather alerts enabled!"
+          : "Background weather alerts disabled."}
+      </Text>
+      <Button
+        title="Run a rain check"
+        onPress={FetchWeather}
+        style={styles.Button}
+      />
+      <Button
+        title="Run your daily weather report"
+        onPress={() => ScheduleDailyNotification(true)}
         style={styles.Button}
       />
     </View>
